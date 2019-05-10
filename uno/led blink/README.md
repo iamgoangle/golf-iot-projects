@@ -1,1 +1,1 @@
-![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/led%20blibk/blink_led.jpg)
+![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/led%20blink/blink_led.jpg)
