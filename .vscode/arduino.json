@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
-    "sketch": "uno/01_hello_world.ino",
-    "port": "/dev/cu.usbserial-14510"
+    "sketch": "uno/03_led_connect.ino",
+    "port": "/dev/cu.usbserial-14440"
 }
