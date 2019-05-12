@@ -31,7 +31,7 @@ void loop()
 
 Arduino support `INPUT_PULLUP` so that means we can remove register to a board.
 
-![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/switch%20digital%20input/input_pull_up.jpg)
+![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/switch%20digital%20input/digital_pull_up.jpg)
 
 ```c++
 void setup()

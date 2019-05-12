@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "sketch": "uno/switch digital input/digital_input.ino",
-    "port": "/dev/cu.usbserial-145120"
+    "port": "/dev/cu.usbserial-145110"
 }
