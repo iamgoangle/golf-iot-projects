@@ -1,9 +1,11 @@
-# Analog INPUT and OUTPUT
+# Analog INPUT
 
 ![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/analog%20input/analog_input.jpg)
 
-Analog can be `0.01, 0.02, so on…`
+## Analog IN
 
-### Digital signal to Analog
+A0 - A5 Socket
 
-We need hardware to convert it, but we can write program to convern `pulse with modulation` <https://circuitdigest.com/tutorial/what-is-pwm-pulse-width-modulation
+## Example
+
+Read INPUT from resister adjustable `Volume
