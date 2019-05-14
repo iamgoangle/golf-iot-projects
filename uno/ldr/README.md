@@ -1,6 +1,6 @@
 # LDR (Light Dependent resistor) Sensor
 
-![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/ldr/ldr.GIF)
+![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/ldr/ldr_led.GIF)
 
 ## Objective
 
