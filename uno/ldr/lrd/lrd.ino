@@ -17,9 +17,9 @@ void loop()
   Serial.println(ldrVal);
 
   if (ldrVal > 400) {
-    digitalWrite(led, 255);
+    digitalWrite(led, HIGH);
   } else {
-    digitalWrite(led, 0);
+    digitalWrite(led, LOW);
   }
 
   delay(500);
