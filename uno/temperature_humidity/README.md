@@ -1,5 +1,9 @@
 # Temperature and Humidity Sensor with LHT11 Module
 
+## Circuit
+
+![LED Blink](https://raw.githubusercontent.com/iamgoangle/golf-iot-projects/master/uno/temperature_humidity/circuit.jpg)
+
 ## Goal
 
 - Create a program to receive digital input and print out in serial monitor.
