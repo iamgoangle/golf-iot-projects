@@ -55,7 +55,6 @@ void printMedium() {
   clearScreen();
 
   lcd.setBacklight(255);
-  lcd.display();
   lcd.noBlink();
 
   // 1st line
@@ -69,6 +68,11 @@ void printMedium() {
   String user = "/iamgoangle";
   lcd.print(user);
   delay(3000);
+
+  for (int i = 0; i < 5; i++) {
+    lcd.scrollDisplayRight();
+    delay(300);
+  }
 }
 
 void loop() {
