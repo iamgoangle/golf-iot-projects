@@ -1,29 +1,24 @@
-/**
- * @author Teerapong Singthong <st.teerapong@gmail.com>
- */
 #include <avr/pgmspace.h>
 #include <LedControl.h>
 
-const int numDevices = 4;       // number of MAX7219s used
-const long scrollDelay = 100;   // adjust scrolling speed
+
+const int numDevices = 4;      // number of MAX7219s used
+const long scrollDelay = 75;   // adjust scrolling speed
+
 
 unsigned long bufferLong [14] = {0};
 
-/*
-  pin 12 - DataIn
-  pin 11 - CLK
-  pin 10 - CS
-  VCC - 5V
-  GND - GND
-*/
+
 LedControl lc = LedControl(12, 11, 10, numDevices);
 
-const unsigned char scrollText[] PROGMEM = {"iamgoangle"};
+
+const unsigned char scrollText[] PROGMEM = {" ArduinoALL "};
+
 
 void setup() {
   for (int x = 0; x < numDevices; x++) {
     lc.shutdown(x, false);      //The MAX72XX is in power-saving mode on startup
-    lc.setIntensity(x, 3);      // Set the brightness to default value
+    lc.setIntensity(x, 8);      // Set the brightness to default value
     lc.clearDisplay(x);         // and clear the display
   }
 }
@@ -31,12 +26,14 @@ void setup() {
 
 void loop() {
   scrollMessage(scrollText);
+  //    scrollFont();
 }
 
-/**
- * Define Set of Characters
- */
-const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged as 7x font data + 1x kerning data)
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+const unsigned char font5x7 [] PROGMEM = {      //Numeric Font Matrix (Arranged as 7x font data + 1x kerning data)
   B00000000,  //Space (Char 0x20)
   B00000000,
   B00000000,
@@ -45,6 +42,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B00000000,
   6,
+
 
   B10000000,  //!
   B10000000,
@@ -55,6 +53,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   2,
 
+
   B10100000,  //"
   B10100000,
   B10100000,
@@ -63,6 +62,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B00000000,
   4,
+
 
   B01010000,  //#
   B01010000,
@@ -73,6 +73,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01010000,
   6,
 
+
   B00100000,  //$
   B01111000,
   B10100000,
@@ -81,6 +82,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11110000,
   B00100000,
   6,
+
 
   B11000000,  //%
   B11001000,
@@ -91,6 +93,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00011000,
   6,
 
+
   B01100000,  //&
   B10010000,
   B10100000,
@@ -99,6 +102,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10010000,
   B01101000,
   6,
+
 
   B11000000,  //'
   B01000000,
@@ -109,6 +113,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   3,
 
+
   B00100000,  //(
   B01000000,
   B10000000,
@@ -117,6 +122,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01000000,
   B00100000,
   4,
+
 
   B10000000,  //)
   B01000000,
@@ -127,6 +133,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   4,
 
+
   B00000000,  //*
   B00100000,
   B10101000,
@@ -135,6 +142,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00100000,
   B00000000,
   6,
+
 
   B00000000,  //+
   B00100000,
@@ -145,6 +153,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   6,
 
+
   B00000000,  //,
   B00000000,
   B00000000,
@@ -154,14 +163,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   3,
 
+
   B00000000,  //-
+  B00000000,
   B00000000,
   B11111000,
   B00000000,
   B00000000,
   B00000000,
-  B00000000,
   6,
+
 
   B00000000,  //.
   B00000000,
@@ -172,6 +183,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11000000,
   3,
 
+
   B00000000,  ///
   B00001000,
   B00010000,
@@ -180,6 +192,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   B00000000,
   6,
+
 
   B01110000,  //0
   B10001000,
@@ -190,6 +203,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B01000000,  //1
   B11000000,
   B01000000,
@@ -198,6 +212,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01000000,
   B11100000,
   4,
+
 
   B01110000,  //2
   B10001000,
@@ -208,6 +223,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11111000,
   6,
 
+
   B11111000,  //3
   B00010000,
   B00100000,
@@ -216,6 +232,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   B01110000,
   6,
+
 
   B00010000,  //4
   B00110000,
@@ -226,6 +243,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00010000,
   6,
 
+
   B11111000,  //5
   B10000000,
   B11110000,
@@ -234,6 +252,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   B01110000,
   6,
+
 
   B00110000,  //6
   B01000000,
@@ -244,6 +263,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B11111000,  //7
   B10001000,
   B00001000,
@@ -252,6 +272,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00100000,
   B00100000,
   6,
+
 
   B01110000,  //8
   B10001000,
@@ -262,6 +283,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B01110000,  //9
   B10001000,
   B10001000,
@@ -270,6 +292,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00010000,
   B01100000,
   6,
+
 
   B00000000,  //:
   B11000000,
@@ -280,6 +303,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   3,
 
+
   B00000000,  //;
   B11000000,
   B11000000,
@@ -288,6 +312,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01000000,
   B10000000,
   3,
+
 
   B00010000,  //<
   B00100000,
@@ -298,6 +323,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00010000,
   5,
 
+
   B00000000,  //=
   B00000000,
   B11111000,
@@ -306,6 +332,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B00000000,
   6,
+
 
   B10000000,  //>
   B01000000,
@@ -316,6 +343,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   5,
 
+
   B01110000,  //?
   B10001000,
   B00001000,
@@ -324,6 +352,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B00100000,
   6,
+
 
   B01110000,  //@
   B10001000,
@@ -334,6 +363,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B01110000,  //A
   B10001000,
   B10001000,
@@ -343,14 +373,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
-  B11110000,  //B
+
+  B10001000,  //B(И)
+  B10001000,
+  B10011000,
+  B10101000,
+  B11001000,
   B10001000,
   B10001000,
-  B11110000,
-  B10001000,
-  B10001000,
-  B11110000,
   6,
+
 
   B01110000,  //C
   B10001000,
@@ -361,77 +393,86 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
-  B11100000,  //D
-  B10010000,
+
+  B11110000,  //D(В)
   B10001000,
   B10001000,
+  B11110000,
   B10001000,
-  B10010000,
-  B11100000,
+  B10001000,
+  B11110000,
   6,
 
-  B11111000,  //E
-  B10000000,
-  B10000000,
-  B11110000,
-  B10000000,
-  B10000000,
+
+  B10001000,  //E(У)
+  B10001000,
+  B10001000,
   B11111000,
+  B00001000,
+  B00001000,
+  B01110000,
   6,
 
-  B11111000,  //F
-  B10000000,
-  B10000000,
-  B11110000,
-  B10000000,
-  B10000000,
-  B10000000,
-  6,
 
-  B01110000,  //G
+  B01110000,  //F(А)
   B10001000,
-  B10000000,
-  B10111000,
-  B10001000,
-  B10001000,
-  B01111000,
-  6,
-
-  B10001000,  //H
   B10001000,
   B10001000,
   B11111000,
   B10001000,
   B10001000,
+  6,
+
+
+  B11111000,  //G(П)
+  B10001000,
+  B10001000,
+  B10001000,
+  B10001000,
+  B10001000,
   B10001000,
   6,
 
-  B11100000,  //I
-  B01000000,
-  B01000000,
-  B01000000,
-  B01000000,
-  B01000000,
-  B11100000,
-  4,
 
-  B00111000,  //J
-  B00010000,
-  B00010000,
-  B00010000,
-  B00010000,
-  B10010000,
-  B01100000,
+  B11110000,  //H(Р)
+  B10001000,
+  B10001000,
+  B11110000,
+  B10000000,
+  B10000000,
+  B10000000,
   6,
 
-  B10001000,  //K
-  B10010000,
-  B10100000,
-  B11000000,
-  B10100000,
-  B10010000,
+
+  B10101000,  //I(Ш)
+  B10101000,
+  B10101000,
+  B10101000,
+  B10101000,
+  B10101000,
+  B11111000,
+  6,
+
+
+  B01110000,  //J(О)
+  B10001000,
+  B10001000,
+  B10001000,
+  B10001000,
+  B10001000,
+  B01110000,
+  6,
+
+
+  B00111000,  //K(Л)
+  B01001000,
+  B01001000,
+  B01001000,
+  B01001000,
+  B01001000,
   B10001000,
   6,
+
 
   B10000000,  //L
   B10000000,
@@ -442,6 +483,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11111000,
   6,
 
+
   B10001000,  //M
   B11011000,
   B10101000,
@@ -451,14 +493,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
-  B10001000,  //N
-  B10001000,
-  B11001000,
-  B10101000,
-  B10011000,
-  B10001000,
-  B10001000,
+
+  B11111000,  //N(Т)
+  B00100000,
+  B00100000,
+  B00100000,
+  B00100000,
+  B00100000,
+  B00100000,
   6,
+
 
   B01110000,  //O
   B10001000,
@@ -469,6 +513,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B11110000,  //P
   B10001000,
   B10001000,
@@ -478,23 +523,26 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   6,
 
-  B01110000,  //Q
+
+  B01110000,  //Q(Й)
   B10001000,
-  B10001000,
-  B10001000,
+  B10011000,
   B10101000,
-  B10010000,
-  B01101000,
+  B11001000,
+  B10001000,
+  B10001000,
   6,
 
-  B11110000,  //R
-  B10001000,
-  B10001000,
-  B11110000,
+
+  B10001000,  //R(К)
+  B10010000,
+  B10100000,
+  B11000000,
   B10100000,
   B10010000,
   B10001000,
   6,
+
 
   B01111000,  //S
   B10000000,
@@ -505,32 +553,36 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11110000,
   6,
 
-  B11111000,  //T
-  B00100000,
-  B00100000,
-  B00100000,
-  B00100000,
-  B00100000,
-  B00100000,
+
+  B11111000,  //T(Е)
+  B10000000,
+  B10000000,
+  B11110000,
+  B10000000,
+  B10000000,
+  B11111000,
   6,
 
-  B10001000,  //U
+
+  B11111000,  //U(Г)
   B10001000,
-  B10001000,
-  B10001000,
-  B10001000,
-  B10001000,
-  B01110000,
+  B10000000,
+  B10000000,
+  B10000000,
+  B10000000,
+  B10000000,
   6,
 
-  B10001000,  //V
+
+  B10001000,  //V(М)
+  B11011000,
+  B10101000,
   B10001000,
   B10001000,
   B10001000,
   B10001000,
-  B01010000,
-  B00100000,
   6,
+
 
   B10001000,  //W
   B10001000,
@@ -541,6 +593,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01010000,
   6,
 
+
   B10001000,  //X
   B10001000,
   B01010000,
@@ -550,32 +603,36 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
-  B10001000,  //Y
+
+  B10001000,  //Y(Н)
   B10001000,
+  B10001000,
+  B11111000,
+  B10001000,
+  B10001000,
+  B10001000,
+  6,
+
+
+  B01111000,  //Z(Я)
+  B10001000,
+  B10001000,
+  B01111000,
+  B00101000,
+  B01001000,
+  B10001000,
+  6,
+
+
+  B00000000,  //[(х)
+  B00000000,
   B10001000,
   B01010000,
   B00100000,
-  B00100000,
-  B00100000,
+  B01010000,
+  B10001000,
   6,
 
-  B11111000,  //Z
-  B00001000,
-  B00010000,
-  B00100000,
-  B01000000,
-  B10000000,
-  B11111000,
-  6,
-
-  B11100000,  //[
-  B10000000,
-  B10000000,
-  B10000000,
-  B10000000,
-  B10000000,
-  B11100000,
-  4,
 
   B00000000,  //(Backward Slash)
   B10000000,
@@ -586,6 +643,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   6,
 
+
   B11100000,  //]
   B00100000,
   B00100000,
@@ -594,6 +652,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00100000,
   B11100000,
   4,
+
 
   B00100000,  //^
   B01010000,
@@ -604,6 +663,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   6,
 
+
   B00000000,  //_
   B00000000,
   B00000000,
@@ -612,6 +672,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B11111000,
   6,
+
 
   B10000000,  //`
   B01000000,
@@ -622,6 +683,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   4,
 
+
   B00000000,  //a
   B00000000,
   B01110000,
@@ -631,14 +693,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01111000,
   6,
 
-  B10000000,  //b
-  B10000000,
-  B10110000,
+
+  B00000000,  //b(и)
+  B00000000,
+  B10001000,
+  B10011000,
+  B10101000,
   B11001000,
   B10001000,
-  B10001000,
-  B11110000,
   6,
+
 
   B00000000,  //c
   B00000000,
@@ -649,6 +713,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B00001000,  //d
   B00001000,
   B01101000,
@@ -658,32 +723,36 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01111000,
   6,
 
-  B00000000,  //e
+
+  B00000000,  //e(у)
   B00000000,
-  B01110000,
+  B10001000,
   B10001000,
   B11111000,
-  B10000000,
-  B01110000,
-  6,
-
-  B00110000,  //f
-  B01001000,
-  B01000000,
-  B11100000,
-  B01000000,
-  B01000000,
-  B01000000,
-  6,
-
-  B00000000,  //g
-  B01111000,
-  B10001000,
-  B10001000,
-  B01111000,
   B00001000,
   B01110000,
   6,
+
+
+  B00000000,  //f(а)
+  B00000000,
+  B01110000,
+  B00001000,
+  B01111000,
+  B10001000,
+  B01111000,
+  6,
+
+
+  B00000000,  //g(п)
+  B00000000,
+  B11110000,
+  B10001000,
+  B10001000,
+  B10001000,
+  B10001000,
+  6,
+
 
   B10000000,  //h
   B10000000,
@@ -694,6 +763,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
+
   B01000000,  //i
   B00000000,
   B11000000,
@@ -703,23 +773,26 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11100000,
   4,
 
-  B00010000,  //j
-  B00000000,
-  B00110000,
-  B00010000,
-  B00010000,
-  B10010000,
-  B01100000,
-  5,
 
-  B10000000,  //k
-  B10000000,
-  B10010000,
-  B10100000,
-  B11000000,
-  B10100000,
-  B10010000,
-  5,
+  B00000000,  //j(о)
+  B00000000,
+  B01110000,
+  B10001000,
+  B10001000,
+  B10001000,
+  B01110000,
+  6,
+
+
+  B00000000,  //k(л)
+  B00000000,
+  B00111000,
+  B01001000,
+  B01001000,
+  B01001000,
+  B10001000,
+  6,
+
 
   B11000000,  //l
   B01000000,
@@ -730,6 +803,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11100000,
   4,
 
+
   B00000000,  //m
   B00000000,
   B11010000,
@@ -739,14 +813,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
-  B00000000,  //n
+
+  B00000000,  //n(т)
   B00000000,
-  B10110000,
-  B11001000,
-  B10001000,
-  B10001000,
-  B10001000,
+  B11111000,
+  B00100000,
+  B00100000,
+  B00100000,
+  B00100000,
   6,
+
 
   B00000000,  //o
   B00000000,
@@ -757,6 +833,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B01110000,
   6,
 
+
   B00000000,  //p
   B00000000,
   B11110000,
@@ -766,14 +843,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   6,
 
-  B00000000,  //q
-  B00000000,
-  B01101000,
+
+  B00000000,  //q(й)
+  B01110000,
+  B10001000,
   B10011000,
-  B01111000,
-  B00001000,
-  B00001000,
+  B10101000,
+  B11001000,
+  B10001000,
   6,
+
 
   B00000000,  //r
   B00000000,
@@ -784,6 +863,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   6,
 
+
   B00000000,  //s
   B00000000,
   B01110000,
@@ -792,6 +872,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00001000,
   B11110000,
   6,
+
 
   B01000000,  //t
   B01000000,
@@ -802,6 +883,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00110000,
   6,
 
+
   B00000000,  //u
   B00000000,
   B10001000,
@@ -810,6 +892,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10011000,
   B01101000,
   6,
+
 
   B00000000,  //v
   B00000000,
@@ -820,6 +903,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00100000,
   6,
 
+
   B00000000,  //w
   B00000000,
   B10001000,
@@ -828,6 +912,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10101000,
   B01010000,
   6,
+
 
   B00000000,  //x
   B00000000,
@@ -838,14 +923,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10001000,
   6,
 
-  B00000000,  //y
+
+  B00000000,  //y(н)
   B00000000,
   B10001000,
   B10001000,
-  B01111000,
-  B00001000,
-  B01110000,
+  B11111000,
+  B10001000,
+  B10001000,
   6,
+
 
   B00000000,  //z
   B00000000,
@@ -856,14 +943,16 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B11111000,
   6,
 
-  B00100000,  //{
-  B01000000,
-  B01000000,
-  B10000000,
-  B01000000,
-  B01000000,
+
+  B10001000,  //{(Х)
+  B10001000,
+  B01010000,
   B00100000,
-  4,
+  B01010000,
+  B10001000,
+  B10001000,
+  6,
+
 
   B10000000,  //|
   B10000000,
@@ -874,6 +963,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   2,
 
+
   B10000000,  //}
   B01000000,
   B01000000,
@@ -883,6 +973,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B10000000,
   4,
 
+
   B00000000,  //~
   B00000000,
   B00000000,
@@ -891,6 +982,7 @@ const unsigned char font5x7 [] PROGMEM = {      // Numeric Font Matrix (Arranged
   B00000000,
   B00000000,
   6,
+
 
   B01100000,  // (Char 0x7F)
   B10010000,
@@ -911,11 +1003,11 @@ void scrollFont() {
   }
 }
 
+
 // Scroll Message
 void scrollMessage(const unsigned char * messageString) {
   int counter = 0;
   int myChar = 0;
-  
   do {
     // read back a char
     myChar =  pgm_read_byte_near(messageString + counter);
@@ -926,7 +1018,6 @@ void scrollMessage(const unsigned char * messageString) {
   }
   while (myChar != 0);
 }
-
 // Load character into scroll buffer
 void loadBufferLong(int ascii) {
   if (ascii >= 0x20 && ascii <= 0xff) {
@@ -944,7 +1035,6 @@ void loadBufferLong(int ascii) {
     }
   }
 }
-
 // Rotate the buffer
 void rotateBufferLong() {
   for (int a = 0; a < 7; a++) {               // Loop 7 times for a 5x7 font
@@ -958,7 +1048,6 @@ void rotateBufferLong() {
     bufferLong [a * 2 + 1] = x;             // Store new high buffer
   }
 }
-
 // Display Buffer on LED matrix
 void printBufferLong() {
   for (int a = 0; a < 7; a++) {             // Loop 7 times for a 5x7 font
