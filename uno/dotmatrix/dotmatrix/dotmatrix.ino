@@ -10,15 +10,15 @@ const long scrollDelay = 100;   // adjust scrolling speed
 unsigned long bufferLong [14] = {0};
 
 /*
-  pin 12 - DataIn
-  pin 11 - CLK
+  pin 11 - DataIn
+  pin 13 - CLK
   pin 10 - CS
   VCC - 5V
   GND - GND
 */
-LedControl lc = LedControl(12, 11, 10, numDevices);
+LedControl lc = LedControl(11, 13, 10, numDevices);
 
-const unsigned char scrollText[] PROGMEM = {"iamgoangle"};
+const unsigned char scrollText[] PROGMEM = {" IAMGOANGLE "};
 
 void setup() {
   for (int x = 0; x < numDevices; x++) {
