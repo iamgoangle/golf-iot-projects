@@ -4,7 +4,7 @@
             "name": "Mac",
             "includePath": [
                 "/Users/goangle/Library/Arduino15/packages/esp8266/tools/**",
-                "/Users/goangle/Library/Arduino15/packages/esp8266/hardware/esp8266/2.5.1/**",
+                "/Users/goangle/Library/Arduino15/packages/esp8266/hardware/esp8266/2.5.2/**",
                 "/Applications/Arduino.app/Contents/Java/tools/**",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/**",
                 "/Applications/Arduino.app/Contents/Java/hardware/arduino/avr/cores/arduino",
